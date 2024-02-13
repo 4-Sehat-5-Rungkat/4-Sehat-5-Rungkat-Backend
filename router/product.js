@@ -15,4 +15,16 @@ router.put('/product/:id', productController.editId)
 // delete product
 router.delete('/product/:id', productController.deleteId)
 
+// cart 
+router.route('/cart')
+    .get(productController.getCart)
+    .post(productController.postCart)
+
+router.delete('/cart/:id', productController.deleteCartId)
+
+router.put('/cart/:id', productController.putCart)
+
+// checkout pembayaran
+router.post('/cart/payment', productController.payment)
+
 module.exports = router
