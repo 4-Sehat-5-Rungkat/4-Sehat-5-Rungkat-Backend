@@ -182,7 +182,7 @@ module.exports = {
           product.image = `../images/${filename}`
         }
       
-        res.status(200).json({
+        res.status(201).json({
           messages: "Success Update Data",
           data: product
         })
@@ -223,7 +223,7 @@ module.exports = {
       }
 
       if (product.quantity == 0){
-        return res.status(404).json({
+        return res.status(204).json({
           massages: "Product Sold"
         })
       }
@@ -240,14 +240,14 @@ module.exports = {
           quantity: 1
         })
 
-        res.status(200).json({
+        res.status(201).json({
           massages: "success add product",
           cart
         })
       }
 
       item.quantity += 1
-      res.status(200).json({
+      res.status(201).json({
         massages: "Success add product",
         cart
       })
@@ -278,7 +278,7 @@ module.exports = {
       product.quantity += diff
       item.quantity -= diff
 
-      res.status(200).json({
+      res.status(201).json({
         massages: "Success Update Item",
         cart: cart
       })
