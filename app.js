@@ -13,6 +13,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(fileUpload())
 
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.get('/', (req, res) => {
   res.send('Selamat Berbelanja di 4 Sehat 5 Rungkat')
 })

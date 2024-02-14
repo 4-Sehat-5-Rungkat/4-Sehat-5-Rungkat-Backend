@@ -26,7 +26,7 @@ let produkOlahraga = [
         price: 750000,
         quantity: 100,
         description: "Sepatu lari dengan teknologi terbaru untuk performa maksimal.",
-        image: "../images/sepatu_lari.jpg",
+        image: "/images/sepatu_lari.jpg",
     },
     {
         id: 2,
@@ -34,7 +34,7 @@ let produkOlahraga = [
         price: 250000,
         quantity: 100,
         description: "Jersey resmi klub favoritmu, nyaman dan stylish.",
-        image: "../images/jersey_sepak_bola.jpg",
+        image: "/images/jersey_sepak_bola.jpg",
     },
     {
         id: 3,
@@ -42,7 +42,7 @@ let produkOlahraga = [
         price: 350000,
         quantity: 100,
         description: "Raket dengan desain aerodinamis untuk kontrol dan kekuatan lebih baik.",
-        image: "../images/raket_bulu_tangkis.jpg",
+        image: "/images/raket_bulu_tangkis.jpg",
     },
     {
         id: 4,
@@ -50,7 +50,7 @@ let produkOlahraga = [
         price: 200000,
         quantity: 100,
         description: "Bola basket resmi ukuran standar untuk pertandingan serius.",
-        image: "../images/bola_basket.jpg",
+        image: "/images/bola_basket.jpg",
     },
     {
         id: 5,
@@ -58,7 +58,7 @@ let produkOlahraga = [
         price: 150000,
         quantity: 100,
         description: "Bola sepak resmi ukuran standar untuk pertandingan serius.",
-        image: "../images/bola_sepak.jpg",
+        image: "/images/bola_sepak.jpg",
     }
 ]
 
@@ -112,7 +112,7 @@ module.exports = {
           description,
           price,
           quantity,
-          image: `../images/${filename}`,
+          image: `/images/${filename}`,
         }
       
         console.log(newProduct)
