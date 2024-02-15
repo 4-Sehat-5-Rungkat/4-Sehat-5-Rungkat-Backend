@@ -102,8 +102,9 @@ module.exports = {
         }
       
         const image = req.files.image
-        const filename = `${name}.jpg`
-      
+        //const filename = `${name}.jpg`
+        const filename = `${name.replace(/\s/g, '_')}.jpg`
+
         image.mv(path.join(__dirname, '../images', filename))
       
         const newProduct = {
@@ -176,10 +177,10 @@ module.exports = {
           }catch(err) {
             console.log(err)
           }
-          const filename = `${name}.jpg`
+          const filename = `${name.replace(/\s/g, '_')}.jpg`
           // image.mv(path.join(__dirname, 'public/images', filename))
           console.log(image.mv(path.join(__dirname, '../images', filename)))
-          product.image = `../images/${filename}`
+          product.image = `/images/${filename}`
         }
       
         res.status(201).json({
