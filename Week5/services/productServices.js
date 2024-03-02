@@ -1,7 +1,12 @@
-exports.getProducts = async (req, res) => {
+const { product } = require("../models")
+
+exports.getAllProducts = async (req, res) => {
+    
+    const data = await product.findAll()
+
     return {
         status: 200,
-        data: 'toko',
+        data,
         message: 'Success get all data'
     }
 }
