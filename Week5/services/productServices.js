@@ -67,3 +67,29 @@ exports.getProductId = async (req,res) => {
         message: 'Success Get Data by id'
     }
 }
+
+exports.editProduct = async(req, res) => {
+    const {id} = req.params
+    const data = product.findOne({where: {id}})
+
+    if (!data){
+        return{
+            status: 404,
+            message: 'Data not Found'
+        }
+    }
+
+    const {name, description, price} = req.body 
+    const slug = name.toLowerCase().split(' ').join('-')
+    deleteImageHelper(data.image)
+
+    const imageFilePath = await saveImage(req.files.image,slug, "product")
+
+    await product.update({name, description, price, image: imageFilePath}, {where:{id}})
+
+    return{
+        status: 200,
+        data: req.body,
+        message: 'Success update data'
+    }
+}
