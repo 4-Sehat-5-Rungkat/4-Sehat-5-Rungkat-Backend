@@ -1,4 +1,6 @@
 const { product } = require("../models")
+const { saveImage } = require("../helpers/saveImageHelper")
+const { deleteImageHelper } = require("../helpers/deleteImageHelper")
 
 exports.getAllProducts = async (req, res) => {
     
@@ -8,5 +10,60 @@ exports.getAllProducts = async (req, res) => {
         status: 200,
         data,
         message: 'Success get all data'
+    }
+}
+
+exports.createProduct = async (req, res) => {
+    const {name,description, price, image} = req.body
+    const slug = name.toLowerCase().split(' ').join('-')
+
+    const imageFilePath = await saveImage(req.files.image,slug, "product")
+
+    const data = await product.create({name, description, price, image: imageFilePath})
+
+    return {
+        status: 201,
+        data: req.body,
+        message: "Success Create Data"
+    }
+}
+
+exports.deleteProducts = async (req,res) => {
+    const {id} = req.params
+    const data = await product.findOne({where:{id}})
+
+    if (!data) {
+        return{
+            status: 404,
+            message: 'data not found'
+        }
+    }
+
+    deleteImageHelper(data.image)
+
+    await product.destroy({where:{id}})
+
+    return {
+        status: 200,
+        message: "success delete product"
+    }
+}
+
+exports.getProductId = async (req,res) => {
+    const { id } = req.params
+
+    const data = await product.findOne({where: {id}})
+
+    if (!data) {
+        return {
+            status: 404,
+            message: "data not found"
+        }
+    }
+
+    return{
+        status: 200,
+        data,
+        message: 'Success Get Data by id'
     }
 }
