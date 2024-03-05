@@ -37,3 +37,21 @@ exports.createUser = async (req, res) => {
         message: 'success create new user'
     }
 }
+
+exports.deleteUser = async (req,res) => {
+    const {id} = req.params
+    const data = await user.findOne({where: {id}})
+    
+    if (!data) {
+        return{
+            status: 404,
+            message: 'data not found'
+        }
+    }
+
+    await user.destroy({where: {id}})
+    return {
+        status: 200, 
+        message: 'success delete user'
+    }
+}

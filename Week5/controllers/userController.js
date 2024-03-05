@@ -23,3 +23,8 @@ exports.createUser = async (req,res) => {
     const result = await userService.createUser(req, res)
     return res.status(result.status).json(result)
 }
+
+exports.deleteUser = async (req,res) => {
+    const result = await userService.deleteUser(req,res)
+    return res.status(result.status).json(result)
+}
