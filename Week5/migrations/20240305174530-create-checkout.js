@@ -18,6 +18,15 @@ module.exports = {
       quantity: {
         type: Sequelize.INTEGER
       },
+      status: {
+        type: Sequelize.STRING
+      },
+      order_id: {
+        type: Sequelize.STRING
+      },
+      va_number: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
