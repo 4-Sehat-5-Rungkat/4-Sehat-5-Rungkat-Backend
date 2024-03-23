@@ -1,12 +1,16 @@
 const { rupiahFormat } = require('../helpers/formatRupiahHelper')
 const { checkout, product, user } = require('../models')
+require('dotenv').config();
+
+const ServerKey = process.env.SERVER_KEY;
+const ClientKey = process.env.CLIENT_KEY;
 
 const midtransClient = require('midtrans-client');
 
 let coreApi = new midtransClient.CoreApi({
     isProduction : false,
-    serverKey : 'SB-Mid-server-aQc5SN2aJyuzL1_i7Bt6j-ZR',
-    clientKey : 'SB-Mid-client-8x_D7MQEVGdSd6F1'
+    serverKey : ServerKey,
+    clientKey : ClientKey
 });
 
 exports.createCheckoutProduct = async (req, res) => {
@@ -23,7 +27,9 @@ exports.createCheckoutProduct = async (req, res) => {
     }
 
     const random = Math.floor(Math.random() * 1000000);
-    
+    const splitName = req.user_data.name.split(' ');
+    const firstName = splitName[0];
+    const lastName = splitName.slice(1).join(' ');
     const dataMidstrans = {
         "payment_type": "bank_transfer",
         "transaction_details": {
@@ -43,8 +49,8 @@ exports.createCheckoutProduct = async (req, res) => {
             "bank": `${bank}`
         },
         "customer_details": {
-            "first_name": req.user_data.name, // edit nanti
-            "last_name": req.user_data.name,
+            "first_name": firstName, // edit nanti
+            "last_name": lastName,
             "email": req.user_data.email,
         }
     }
