@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // routes
 app.use('/', indexRouter);
 app.use('/user', userRouter);
-app.use('/products', productRouter);
+app.use('/product', productRouter);
 app.use('/checkout', checkoutRouter)
 app.use('/auth', authRouter)
 
